@@ -1,0 +1,30 @@
+package com.training.transportcomany2.services;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.training.transportcomany2.model.Vehicle;
+import com.training.transportcomany2.repos.VehicleRepo;
+
+@Service
+public class VehicleService {
+	@Autowired
+	VehicleRepo vehicleRepo;
+	public void insert(Vehicle vehicle) {
+		vehicleRepo.save(vehicle);
+	}
+	public List<Vehicle> allVehicles(){
+		return vehicleRepo.findAll();
+	}
+	public Optional<Vehicle> findVehicle(int id){
+		return vehicleRepo.findById(id);
+	}
+	
+	public void deleteVehicle(int id) {
+		vehicleRepo.deleteById(id);
+		return ;
+	}
+}
