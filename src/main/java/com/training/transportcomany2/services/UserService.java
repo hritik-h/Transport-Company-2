@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.training.transportcomany2.model.User;
 import com.training.transportcomany2.repos.UserRepo;
 
+/**
+ * 
+ * @author Hritik
+ * Service for User Database
+ */
 @Service
 public class UserService {
 	@Autowired

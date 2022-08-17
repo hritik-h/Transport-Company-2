@@ -5,7 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+/**
+ * 
+ * @author Hritik
+ * 
+ *	Entity for Driver Database
+ */
 @Entity
 @Table(name = "drivers")
 public class Driver {

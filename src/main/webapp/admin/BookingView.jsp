@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -38,7 +38,7 @@
     <div class="col-sm">
       <div class="card" style="width: 18rem; height: 18rem">
       <div class="card-element">
-      <i class="bi bi-view-stacked" id="view-bookings"></i>
+      <a href="allBookings"><i class="bi bi-view-stacked" id="view-bookings"></i></a>
       <h3>view Bookings</h3>
       </div>
       </div>
@@ -61,27 +61,27 @@
         		
 			  <div class="form-group" id="add-form">
 			    <label for="user-id">User Id</label>
-			    <input type="text" class="form-control" id="user-id" aria-describedby="emailHelp" name = "user_id" placeholder="User Id">
+			    <input type="text" class="form-control" id="user-id" aria-describedby="emailHelp" name = "user_id" placeholder="User Id" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="origin">Origin</label>
-			    <input type="text" name = "source" class="form-control" id="origin" placeholder="Origin">
+			    <input type="text" name = "source" class="form-control" id="origin" placeholder="Origin" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="Destination">Destination</label>
-			    <input type="text" name = "destination" class="form-control" id="destination" placeholder="Destination">
+			    <input type="text" name = "destination" class="form-control" id="destination" placeholder="Destination" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="date">Date</label>
-			    <input type="date" name = "date" class="form-control" id="date" placeholder="Pick Date">
+			    <input type="date" name = "date" class="form-control" id="date" placeholder="Pick Date" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle_id">Vehicle Id</label>
-			    <input type="text" name = "vehicle_id" class="form-control" id="vehicle-id" placeholder="Enter the vehicle Id">
+			    <input type="text" name = "vehicle_id" class="form-control" id="vehicle-id" placeholder="Enter the vehicle Id" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="driver-id">Driver Id</label>
-			    <input type="number" name = " driverId" class="form-control" id="driver-id" placeholder="Driver Id">
+			    <input type="number" name = " driverId" class="form-control" id="driver-id" placeholder="Driver Id" required>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
 			</form>
@@ -109,7 +109,7 @@
             <input type="hidden" id="custId" name="action" value="cancel">
 			  <div class="form-group" id="add-form">
 			    <label for="booking-id">Booking Id</label>
-			    <input type="number" class="form-control" id="booking-id" aria-describedby="emailHelp" name = "booking-id" placeholder="booking id">
+			    <input type="number" class="form-control" id="booking-id" aria-describedby="emailHelp" name = "booking-id" placeholder="booking id" required>
 			    <small id="emailHelp" class="form-text text-muted">Enter booking id </small>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>

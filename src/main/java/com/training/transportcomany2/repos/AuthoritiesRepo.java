@@ -4,6 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.training.transportcomany2.model.Authorities;
 
-public interface AuthoritiesRepo extends JpaRepository<Authorities,String>{
-
+/**
+ * 
+ * @author Hritik
+ * 
+ *	Repoaitory for Authorities Table
+ */
+public interface AuthoritiesRepo extends JpaRepository<Authorities,Integer>{
+	Authorities findByUser_id(int id);
 }

@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.training.transportcomany2.model.Booking;
 import com.training.transportcomany2.repos.BookingRepo;
-
+/**
+ * 
+ * @author Hritik
+ * 
+ * Services for booking table
+ */
 @Service
 public class BookingService {
 	

@@ -1,4 +1,4 @@
-package dto;
+package com.training.transportcomany2.dto;
 
 public class UserDto {
 	private int id;

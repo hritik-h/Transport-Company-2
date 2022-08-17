@@ -12,7 +12,7 @@
 	href="fonts/material-icon/css/material-design-iconic-font.min.css">
 
 <!-- Main css -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style1.css">
 </head>
 <body>
 <input type="hidden" id="status" value="<%= request.getAttribute("status") %> ">

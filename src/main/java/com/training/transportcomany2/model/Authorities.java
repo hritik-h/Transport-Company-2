@@ -8,6 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+/**
+ * 
+ * @author Hritik
+ *	Authorities model
+ */
 @Entity
 public class Authorities {
 	@Id

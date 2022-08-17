@@ -8,7 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.training.transportcomany2.model.Driver;
 import com.training.transportcomany2.repos.DriverRepo;
 
-
+/**
+ * 
+ * @author Hritik
+ * 
+ *	Services for driver database
+ */
 public class DriverService {
 	@Autowired
 	DriverRepo driverRepo;
@@ -20,6 +25,7 @@ public class DriverService {
 	}
 	
 	public Optional<Driver> findUser(long id){
+		
 		return driverRepo.findById(id);
 	}
 	

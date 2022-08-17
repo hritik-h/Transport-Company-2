@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -64,7 +65,7 @@
     <div class="col-sm">
       <div class="card" style="width: 18rem; height: 18rem">
       <div class="card-element">
-      <i class="bi bi-view-stacked" id="view-vehicles"></i>
+      <a href="allVehicles/"><i class="bi bi-view-stacked" id="view-vehicles"></i></a>
       <h3>view Vehicles</h3>
       </div>
       </div>
@@ -96,19 +97,19 @@
         	<input type="hidden" id="custId" name="action" value="update">
 			  <div class="form-group">
 			    <label for="vehicle-type">Vehicle Type</label>
-			    <input type="text" name = "vehicle_type" class="form-control" id="vehicle-type" placeholder="Vehicle Type">
+			    <input type="text" name = "vehicle_type" class="form-control" id="vehicle-type" placeholder="Vehicle Type" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-description">Vehicle Description</label>
-			    <input type="text" name = "vehicle_desription" class="form-control" id="vehicle-description" placeholder="Vehicle Description">
+			    <input type="text" name = "vehicle_desription" class="form-control" id="vehicle-description" placeholder="Vehicle Description" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-owner">Vehicle Owner Id</label>
-			    <input type="number" name = "vehicle_customer_id" class="form-control" id="vehicle-owner" placeholder="Vehicle Owner Id">
+			    <input type="number" name = "vehicle_customer_id" class="form-control" id="vehicle-owner" placeholder="Vehicle Owner Id" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-number">Vehicle Number</label>
-			    <input type="number" name = "vehicle_number" class="form-control" id="vehicle-number" placeholder="Vehicle Number">
+			    <input type="number" name = "vehicle_number" class="form-control" id="vehicle-number" placeholder="Vehicle Number" required>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
 			</form>
@@ -134,24 +135,24 @@
         	<input type="hidden" id="custId" name="action" value="update">
 			  <div class="form-group" id="add-form">
 			    <label for="vehicle-id">Vehicle Id</label>
-			    <input type="number" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "vehicle_id" placeholder="Vehicle id">
+			    <input type="number" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "vehicle_id" placeholder="Vehicle id" required>
 			    <small id="emailHelp" class="form-text text-muted">Enter any unique id</small>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-type">Vehicle Type</label>
-			    <input type="text" name = "vehicle_type" class="form-control" id="vehicle-type" placeholder="Vehicle Type">
+			    <input type="text" name = "vehicle_type" class="form-control" id="vehicle-type" placeholder="Vehicle Type" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-description">Vehicle Description</label>
-			    <input type="text" name = "vehicle_desription" class="form-control" id="vehicle-description" placeholder="Vehicle Description">
+			    <input type="text" name = "vehicle_desription" class="form-control" id="vehicle-description" placeholder="Vehicle Description" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-owner">Vehicle Owner Id</label>
-			    <input type="number" name = "vehicle_customer_id" class="form-control" id="vehicle-owner" placeholder="Vehicle Owner Id">
+			    <input type="number" name = "vehicle_customer_id" class="form-control" id="vehicle-owner" placeholder="Vehicle Owner Id" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="vehicle-number">Vehicle Number</label>
-			    <input type="number" name = "vehicle_number" class="form-control" id="vehicle-number" placeholder="Vehicle Number">
+			    <input type="number" name = "vehicle_number" class="form-control" id="vehicle-number" placeholder="Vehicle Number" required>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
 			</form>
@@ -179,7 +180,7 @@
         	<input type="hidden" id="custId" name="action" value="delete">
 			  <div class="form-group" id="add-form">
 			    <label for="vehicle-id">Vehicle Id</label>
-			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "vehicle-id" placeholder="Vehicle id">
+			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "vehicle-id" placeholder="Vehicle id" required>
 			    <small id="emailHelp" class="form-text text-muted">Enter id of the Vehicle to remove it from the db</small>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
@@ -203,11 +204,11 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-            <form action="VehicleHandler" method="post">
+            <form action="viewVehicle" method="get">
             <input type="hidden" id="custId" name="action" value="view">
 			  <div class="form-group" id="add-form">
 			    <label for="vehicle-id">Vehicle Id</label>
-			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "vehicle-id" placeholder="Vehicle id">
+			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "vehicle-id" placeholder="Vehicle id" required>
 			    <small id="emailHelp" class="form-text text-muted">Enter id of the Vehicle </small>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>

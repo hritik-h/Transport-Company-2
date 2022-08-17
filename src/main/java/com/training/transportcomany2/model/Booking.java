@@ -6,6 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+/**
+ * 
+ * @author Hritik
+ *	Booking Entity
+ */
 @Entity
 public class Booking {
 	@Override

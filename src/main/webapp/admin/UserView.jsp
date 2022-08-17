@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -64,7 +64,7 @@
     <div class="col-sm">
       <div class="card" style="width: 18rem; height: 18rem">
       <div class="card-element">
-      <i class="bi bi-view-stacked" id="view-users"></i>
+      <a href="allUsers/"><i class="bi bi-view-stacked" id="view-users"></i></a>
       <h3>View Users</h3>
       </div>
       </div>
@@ -98,23 +98,23 @@
         		
 			  <div class="form-group" id="add-form">
 			    <label for="first-name">First Name</label>
-			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "FirstName" placeholder="First Name">
+			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "FirstName" placeholder="First Name" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="last-name">Last Name</label>
-			    <input type="text" name = "LastName" class="form-control" id="last-name" placeholder="Last Name">
+			    <input type="text" name = "LastName" class="form-control" id="last-name" placeholder="Last Name" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="username">Username</label>
-			    <input type="text" name = "uname" class="form-control" id="username" placeholder="Username">
+			    <input type="text" name = "uname" class="form-control" id="username" placeholder="Username" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="password">Password</label>
-			    <input type="password" name = "password" class="form-control" id="password" placeholder="Password">
+			    <input type="password" name = "password" class="form-control" id="password" placeholder="Password" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="contact-number">Contact Number</label>
-			    <input type="number" name = "contactno" class="form-control" id="contact-number" placeholder="Contact Number">
+			    <input type="number" name = "contactno" class="form-control" id="contact-number" placeholder="Contact Number" required>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
 			</form>
@@ -144,23 +144,23 @@
         		
 			  <div class="form-group" id="add-form">
 			    <label for="first-name">First Name</label>
-			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "FirstName" placeholder="First Name">
+			    <input type="text" class="form-control" id="vehicle-id" aria-describedby="emailHelp" name = "FirstName" placeholder="First Name" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="last-name">Last Name</label>
-			    <input type="text" name = "LastName" class="form-control" id="last-name" placeholder="Last Name">
+			    <input type="text" name = "LastName" class="form-control" id="last-name" placeholder="Last Name" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="username">Username</label>
-			    <input type="text" name = "uname" class="form-control" id="username" placeholder="Username">
+			    <input type="text" name = "uname" class="form-control" id="username" placeholder="Username" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="password">Password</label>
-			    <input type="password" name = "password" class="form-control" id="password" placeholder="Password">
+			    <input type="password" name = "password" class="form-control" id="password" placeholder="Password" required>
 			  </div>
 			  <div class="form-group">
 			    <label for="contact-number">Contact Number</label>
-			    <input type="number" name = "contactno" class="form-control" id="contact-number" placeholder="Contact Number">
+			    <input type="number" name = "contactno" class="form-control" id="contact-number" placeholder="Contact Number" required>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
 			</form>
@@ -188,7 +188,7 @@
             <input type="hidden" id="custId" name="action" value="delete">
 			  <div class="form-group" id="add-form">
 			    <label for="user-id">User Id</label>
-			    <input type="number" class="form-control" id="user-id" aria-describedby="emailHelp" name = "user-id" placeholder="User id">
+			    <input type="number" class="form-control" id="user-id" aria-describedby="emailHelp" name = "user-id" placeholder="User id" required>
 			    <small id="emailHelp" class="form-text text-muted">Enter id of the User </small>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
@@ -213,11 +213,11 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <form action="UserHandler" method="post">
+        <form action="viewUser" method="get">
             <input type="hidden" id="custId" name="action" value="view">
 			  <div class="form-group" id="add-form">
 			    <label for="user-id">User Id</label>
-			    <input type="text" class="form-control" id="user-id" aria-describedby="emailHelp" name = "user-id" placeholder="User id">
+			    <input type="number" class="form-control" id="user-id" aria-describedby="emailHelp" name = "user-id" placeholder="User id" required>
 			    <small id="emailHelp" class="form-text text-muted">Enter id of the User </small>
 			  </div>
 			  <button type="submit" class="btn btn-primary" id="submit-add">Submit</button>
@@ -233,8 +233,8 @@
   <script>
   	$(document).ready(function(){
   		$("#view-users").click(function(){
-  			$.get("allUsers");
-  			$('#dashboard').load('list-users.jsp');
+  			//$.get("http://localhost:8081/admin/allUsers");
+  			//$('#dashboard').load('list-users.jsp');
   		});
   	});
   </script>

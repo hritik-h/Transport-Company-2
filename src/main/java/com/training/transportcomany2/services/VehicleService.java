@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 import com.training.transportcomany2.model.Vehicle;
 import com.training.transportcomany2.repos.VehicleRepo;
 
+/**
+ * 
+ * @author Hritik
+ *	Service for Vehicle Database
+ */
 @Service
 public class VehicleService {
 	@Autowired
