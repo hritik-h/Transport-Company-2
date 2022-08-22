@@ -18,8 +18,8 @@ import com.training.transportcomany2.repos.VehicleRepo;
 public class VehicleService {
 	@Autowired
 	VehicleRepo vehicleRepo;
-	public void insert(Vehicle vehicle) {
-		vehicleRepo.save(vehicle);
+	public Vehicle insert(Vehicle vehicle) {
+		return vehicleRepo.save(vehicle);
 	}
 	public List<Vehicle> allVehicles(){
 		return vehicleRepo.findAll();

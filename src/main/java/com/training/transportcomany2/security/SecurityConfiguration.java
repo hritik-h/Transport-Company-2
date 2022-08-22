@@ -24,8 +24,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
-		http.authorizeRequests()
-			.antMatchers("/admin/**").hasRole("ADMIN")
+		http.csrf().disable().authorizeRequests()
+			.antMatchers("/admin/**","/admin/UserHandler").hasRole("ADMIN")
 			.antMatchers("/user/**").hasAnyRole("ADMIN","USER")
 			.antMatchers("/").permitAll()
 			.and().formLogin();

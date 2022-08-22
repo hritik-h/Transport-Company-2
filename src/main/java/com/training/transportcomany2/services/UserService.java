@@ -18,9 +18,9 @@ import com.training.transportcomany2.repos.UserRepo;
 public class UserService {
 	@Autowired
 	UserRepo userRepo;
-	public void insert(User user) {
+	public User insert(User user) {
 		
-		userRepo.save(user);
+		return userRepo.save(user);
 	}
 	public List<User> allUsers(){
 		return userRepo.findAll();
