@@ -12,4 +12,5 @@ import com.training.transportcomany2.model.User;
  */
 public interface UserRepo extends JpaRepository<User, Integer> {
 	User findByUname(String name);
+	public boolean existsByUname(String uname);
 }

@@ -37,4 +37,8 @@ public class UserService {
 	public User findUserByUname(String uname) {
 		return userRepo.findByUname(uname);
 	}
+	
+	public boolean existsUserByUname(String uname) {
+		return userRepo.existsByUname(uname);
+}
 }
