@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.training.transportcomany2.exceptions.UserNotFoundException;
 import com.training.transportcomany2.model.Authorities;
 import com.training.transportcomany2.model.Booking;
 import com.training.transportcomany2.model.User;
@@ -57,6 +59,12 @@ public class AdminController {
 	@GetMapping("/dashboard")
 	public String dahsboard(Model model) {
 		return DASHBOARD;
+	}
+	
+	@ExceptionHandler(value =UserNotFoundException.class)
+	public String error(Model m,Exception ex) {
+		m.addAttribute("msg", ex.getLocalizedMessage());
+		return "error-page";
 	}
 	/**
 	 * 
@@ -177,16 +185,25 @@ public class AdminController {
 	
 	/**
 	 * View one user
+	 * @throws UserNotFoundException 
 	 */
 	@GetMapping("/viewUser")
-	public String OneUser(Model model, HttpServletRequest request) {
-		User user = userService.findUser(Integer.parseInt(request.getParameter("user-id"))).get();
+	public String OneUser(Model model, HttpServletRequest request) throws UserNotFoundException {
+		Optional<User> op = userService.findUser(Integer.parseInt(request.getParameter("user-id")));
+		//User user = userService.findUser(Integer.parseInt(request.getParameter("user-id"))).get();
+		if(op.isPresent()) {
+		User user = op.get();
 		List<User> users = new ArrayList<User>() ;
+		
 		users.add(user);
 		if (user!=null) {
 			model.addAttribute("list", users);
 		}
 		return "list-users";
+		}
+		else {
+			throw new UserNotFoundException("No User Found with the Given Id");
+		}
 	}
 	/**
 	 * 
