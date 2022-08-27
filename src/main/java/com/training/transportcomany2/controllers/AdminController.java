@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.training.transportcomany2.dto.AuthoritiesDto;
+import com.training.transportcomany2.dto.BookingDto;
+import com.training.transportcomany2.dto.UserDto;
+import com.training.transportcomany2.dto.VehicleDto;
 import com.training.transportcomany2.exceptions.UserNotFoundException;
 import com.training.transportcomany2.model.Authorities;
 import com.training.transportcomany2.model.Booking;
@@ -46,6 +51,8 @@ public class AdminController {
 	VehicleService vehicleService;
 	@Autowired
 	BookingService bookingService;
+	@Autowired
+	ModelMapper modelMapper;
 	
 	private static final String DASHBOARD = "admin-dashboard";
 	
@@ -76,8 +83,8 @@ public class AdminController {
 	 * Handles Updation of user database
 	 */
 	@PostMapping("/UserHandler-update")
-	public String userHandlerUpdate(@ModelAttribute User user, Model model,HttpServletRequest request) {
-		
+	public String userHandlerUpdate(@ModelAttribute UserDto userDto, Model model,HttpServletRequest request) {
+		User user = modelMapper.map(userDto, User.class);
 		logger.trace("User: {}",user);
 		logger.trace("Parameter: {}",request.getParameter("action"));
 		int userId = userService.findUserByUname(user.getUname()).getId();
@@ -106,18 +113,19 @@ public class AdminController {
 	 * Adds User to database
 	 */
 	@PostMapping("/UserHandler")
-	public String userHandler(@ModelAttribute User user, Model model,HttpServletRequest request) {
-		
-		logger.trace("User: {}",user);
+	public String userHandler(@ModelAttribute UserDto userDto, Model model,HttpServletRequest request) {
+		User user = modelMapper.map(userDto, User.class);
+		logger.trace("User: {}",userDto);
 		logger.trace("Action: {}",request.getParameter("action"));
-		Authorities authorities = new Authorities();
+		AuthoritiesDto authoritiesDto = new AuthoritiesDto();
 		if(request.getParameter("type").equals("manager") ) {
-			authorities.setAuthority("ROLE_manager");
+			authoritiesDto.setAuthority("ROLE_manager");
 		}
 		else {
-			authorities.setAuthority("ROLE_user");
+			authoritiesDto.setAuthority("ROLE_user");
 		}
-		authorities.setUname(user.getUname());
+		authoritiesDto.setUname(user.getUname());
+		Authorities authorities = modelMapper.map(authoritiesDto,Authorities.class);
 		user.setAuthorities(authorities);
 		authorities.setUser(user);
 		System.out.println(user);
@@ -149,7 +157,8 @@ public class AdminController {
 	 * Handles booking request
 	 */
 	@PostMapping("/BookingHandler")
-	public String bookingHandler(@ModelAttribute Booking booking,Model model) {
+	public String bookingHandler(@ModelAttribute BookingDto bookingDto,Model model) {
+		Booking booking = modelMapper.map(bookingDto, Booking.class);
 		logger.trace("Booking info: {}",booking);
 		bookingService.book(booking);
 		return DASHBOARD;
@@ -222,16 +231,20 @@ public class AdminController {
 
 	/**
 	 * View Vehicle
+	 * @throws UserNotFoundException 
 	 */
 	@GetMapping("/viewVehicle")
-	public String oneVehicle(Model model, HttpServletRequest request) {
-		Vehicle vehicle = vehicleService.findVehicle(Integer.parseInt(request.getParameter("vehicle-id"))).get();
+	public String oneVehicle(Model model, HttpServletRequest request) throws UserNotFoundException {
+		Optional<Vehicle> optionalVehicle = vehicleService.findVehicle(Integer.parseInt(request.getParameter("vehicle-id")));
 		List<Vehicle> vehicles = new ArrayList<Vehicle>() ;
-		vehicles.add(vehicle);
-		if (vehicle!=null) {
+		
+		if(optionalVehicle.isPresent()) {
+			vehicles.add(optionalVehicle.get());
 			model.addAttribute("list", vehicles);
+			return "list-vehicles";
 		}
-		return "list-vehicles";
+		else throw new UserNotFoundException("Vehicle with the given Id not found");
+		
 	}
 	
 	/**
@@ -256,8 +269,9 @@ public class AdminController {
 	 * Adds Vehicles into database
 	 */
 	@PostMapping("/VehicleHandler")
-	public String addVehicle(Vehicle vehicle) {
-		logger.trace("Vehicle: {}",vehicle);
+	public String addVehicle(VehicleDto vehicleDto) {
+		logger.trace("Vehicle: {}",vehicleDto);
+		Vehicle vehicle = modelMapper.map(vehicleDto, Vehicle.class);
 		vehicleService.insert(vehicle);
 		return DASHBOARD;
 	}
@@ -270,7 +284,8 @@ public class AdminController {
 	 * updates vehicle database
 	 */
 	@PostMapping("/VehicleHandler-update")
-	public String updateVehicle(Vehicle vehicle) {
+	public String updateVehicle(VehicleDto vehicleDto) {
+		Vehicle vehicle = modelMapper.map(vehicleDto, Vehicle.class);
 		vehicleService.insert(vehicle);
 		return DASHBOARD;
 	}
