@@ -240,6 +240,9 @@
   font-size: 26px;
   font-weight: 600;
 }
+.bx-log-out{
+  font-size: 35px;
+}
 @media (max-width: 400px) {
   .sidebar.close .nav-links li .sub-menu{
     display: none;

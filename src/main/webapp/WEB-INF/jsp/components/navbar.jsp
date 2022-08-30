@@ -65,7 +65,7 @@
     
 			<ul class="navbar-nav ml-auto text-color">			
 					<li class="nav-item active text-color" data-toggle="modal" data-target=".logout-modal">
-               <a class="nav-link" href="#" ><b>Logout</b></a>
+               <a class="nav-link" href="../logout" ><b>Logout</b></a>
              </li>
 			</ul>
 			

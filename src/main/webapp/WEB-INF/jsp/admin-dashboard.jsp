@@ -102,7 +102,7 @@
         <div class="profile_name">Hritik Singh</div>
         <div class="job">Virtusa</div>
       </div>
-      <i class='bx bx-log-out' ></i>
+      <a href="../logout"><i class='bx bx-log-out' ></i></a>
     </div>
   </li>
 </ul>

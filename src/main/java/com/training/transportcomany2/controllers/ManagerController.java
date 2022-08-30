@@ -41,7 +41,7 @@ public class ManagerController {
 		//logger.trace("Vehicle: {}",vehicleDto);
 		Vehicle vehicle = modelMapper.map(vehicleDto, Vehicle.class);
 		vehicleService.insert(vehicle);
-		return "";
+		return "managerlogin";
 	}
 	@GetMapping("/updatevehicle")
 	public ModelAndView goToUpdateVehiclePage(int vehicleId) throws UserNotFoundException {
