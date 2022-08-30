@@ -16,7 +16,8 @@ import com.training.transportcomany2.exceptionsHandlers.CustomAccessDeniedHandle
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	
+	@Autowired 
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	UserDetailsService userDetailsService;
 	@Override
@@ -31,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/user/**").hasAnyRole("ADMIN","USER")
+			.antMatchers("/manager/**").hasAnyRole("ADMIN","MANAGER")
 			.antMatchers("/").permitAll()
 			.and().formLogin()
 			.loginPage("/login").permitAll().successHandler(myAuthenticationSuccessHandler())
@@ -39,11 +41,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.exceptionHandling()
 			.accessDeniedHandler(accessDeniedHandler());
 	}
-	
+	/*
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}
+	*/
 	
 	@Bean
 	public AccessDeniedHandler accessDeniedHandler() {

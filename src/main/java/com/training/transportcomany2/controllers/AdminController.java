@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,6 +46,9 @@ import com.training.transportcomany2.services.VehicleService;
 @RequestMapping("/admin")
 public class AdminController {
 	Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -68,11 +72,19 @@ public class AdminController {
 		return DASHBOARD;
 	}
 	
-	@ExceptionHandler(value =UserNotFoundException.class)
+	@GetMapping("/")
+	public String managerdahsboard(Model model) {
+		return "managerlogin";
+	}
+	
+	@ExceptionHandler({UserNotFoundException.class, NumberFormatException.class})
 	public String error(Model m,Exception ex) {
 		m.addAttribute("msg", ex.getLocalizedMessage());
 		return "error-page";
 	}
+	
+	
+	
 	/**
 	 * 
 	 * @param user
@@ -114,6 +126,7 @@ public class AdminController {
 	 */
 	@PostMapping("/UserHandler")
 	public String userHandler(@ModelAttribute UserDto userDto, Model model,HttpServletRequest request) {
+		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		User user = modelMapper.map(userDto, User.class);
 		logger.trace("User: {}",userDto);
 		logger.trace("Action: {}",request.getParameter("action"));

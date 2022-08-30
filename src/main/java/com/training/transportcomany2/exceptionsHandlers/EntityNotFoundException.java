@@ -37,7 +37,6 @@ public class EntityNotFoundException {
 	public String handleInvalidCreditional(Model m,EmptyResultDataAccessException exceptionDetails) {
 		logger.trace("Exception Details",exceptionDetails.getMostSpecificCause());
 		String exception = exceptionDetails.getLocalizedMessage().substring(45);
-		System.out.println("_____________---------------"+exception+"__________________----------------");
 		m.addAttribute("msg", "NO "+exception);
 		return "error-page";
 	}

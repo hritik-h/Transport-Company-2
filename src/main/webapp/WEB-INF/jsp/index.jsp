@@ -5,11 +5,13 @@
 <meta charset="ISO-8859-1">
 <title>Home- Transport Company</title>
 <%@ include file="components/common_cs_js.jsp"%>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+
 </head>
 <body>
-<%@ include file="components/navbar.jsp"%>
+<%@ include file="components/index-nav.jsp"%>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -29,8 +31,6 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-    
 
 
 <div class="text-center"><%@ include file="components/message.jsp"%></div>

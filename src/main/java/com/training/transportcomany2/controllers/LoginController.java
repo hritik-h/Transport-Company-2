@@ -4,16 +4,19 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpSession;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.training.transportcomany2.dto.UserDto;
 import com.training.transportcomany2.model.Authorities;
 
 import com.training.transportcomany2.model.User;
@@ -24,11 +27,13 @@ import com.training.transportcomany2.services.UserService;
 public class LoginController {
 
 	Logger logger = LoggerFactory.getLogger(LoginController.class);
-
+	@Autowired
+	ModelMapper modelMapper;
 	@Autowired
 	private UserService userService;
 
-
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	private UserRepo userRepo;
 
@@ -41,7 +46,10 @@ public class LoginController {
 		}
 	}
 
-	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
 	@GetMapping("/login")
 	public String login() {
 		return "login";
@@ -55,9 +63,11 @@ public class LoginController {
 	}
 
 	@PostMapping("/signUp")
-	public String createUser(@ModelAttribute User user, HttpSession session) {
+	public String createUser(@ModelAttribute UserDto userDto, HttpSession session) {
+		String password = passwordEncoder.encode(userDto.getPassword());
+		userDto.setPassword(password);
 		Authorities authorities = new Authorities();
-
+		User user = modelMapper.map(userDto, User.class);
 		logger.debug("* createUser() Exceution Started *");
 
 		authorities.setAuthority("ROLE_user");
